@@ -3,11 +3,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class Keyword {
     private WebDriver driver;
-    private WebDriverWait wait;
+    public WebDriverWait wait;
 
     private static void setUpClass() {
         WebDriverManager.chromedriver().setup();
@@ -17,6 +19,7 @@ public class Keyword {
         driver = new ChromeDriver();
         driver.navigate().to("https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa");
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void tearDown() {
@@ -30,8 +33,12 @@ public class Keyword {
         setUp();
     }
 
-    public void Wait(int seconds){
-        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+    public void Wait(int seconds) {
+        if (driver != null){
+            driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+        } else {
+            System.out.println("Webdriver is null");
+        }
     }
 
     public void navigate(String url){

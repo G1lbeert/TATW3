@@ -10,9 +10,10 @@ public class DashboardPage {
     public void logout() throws InterruptedException {
             loginForm.login();
 
-            keywords.Wait(10);
-            keywords.clickElementID("header-details-user-fullname");
-            keywords.Wait(10);
+            //wait kaka meg a locator is :)))
+            Thread.sleep(5000);
+            keywords.clickElementID("user-options");
+            Thread.sleep(5000);
             keywords.clickElementID("log_out");
     }
 
