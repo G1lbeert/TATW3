@@ -1,11 +1,13 @@
 import org.junit.jupiter.api.Test;
 
-public class TestCases {
+public class LoginTests {
 
     LoginForm loginForm = new LoginForm();
-    
+
     @Test
     void loginIsSuccessful(){
-        loginForm.Login();
+        loginForm.login();
+        loginForm.closeBrowser();
     }
+
 }

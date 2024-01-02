@@ -30,8 +30,8 @@ public class Keyword {
         setUp();
     }
 
-    public void Wait(){
-        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+    public void Wait(int seconds){
+        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
     }
 
     public void navigate(String url){
@@ -52,7 +52,8 @@ public class Keyword {
     }
 
     public void clickElementID(String id){
-        driver.findElement(By.id(id)).click();
+       var element = driver.findElement(By.id(id));
+       element.click();
     }
 
 }
