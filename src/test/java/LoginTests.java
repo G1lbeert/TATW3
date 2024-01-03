@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class LoginTests {
@@ -7,6 +8,14 @@ public class LoginTests {
     @Test
     void loginIsSuccessful(){
         loginForm.login();
+        loginForm.closeBrowser();
+    }
+
+    @Test
+    void noCaptchaAfterThirdTry() throws InterruptedException {
+        loginForm.wrongCredentialLogin();
+        boolean result = loginForm.checkErrorMessage();
+        Assertions.assertTrue(result);
         loginForm.closeBrowser();
     }
 

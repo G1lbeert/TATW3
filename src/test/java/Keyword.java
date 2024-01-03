@@ -1,11 +1,12 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class Keyword {
     private WebDriver driver;
@@ -31,8 +32,14 @@ public class Keyword {
         setUp();
     }
 
-    public void Wait(int seconds) throws InterruptedException {
-       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+    public void waitForElementToBeClickable(By locator, int seconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public void waitForElementToBePresent(By locator, int seconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     public void navigate(String url){
@@ -57,4 +64,7 @@ public class Keyword {
        element.click();
     }
 
+    public boolean elementIsDisplayed(String id){
+        return driver.findElement(By.id(id)).isDisplayed();
+    }
 }

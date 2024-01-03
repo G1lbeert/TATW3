@@ -1,6 +1,4 @@
-import org.junit.jupiter.api.Test;
-
-import java.security.Key;
+import org.openqa.selenium.By;
 
 public class LoginForm {
 
@@ -16,5 +14,18 @@ public class LoginForm {
         keywords.sendKeysById("login-form-username", authorization.UserName());
         keywords.sendKeysById("login-form-password", authorization.Password());
         keywords.clickElementID("login");
+    }
+
+    public void wrongCredentialLogin() throws InterruptedException {
+        keywords.setupForm();
+        keywords.sendKeysById("login-form-username", "asd");
+        keywords.sendKeysById("login-form-password", "asd");
+        keywords.clickElementID("login");
+
+        keywords.waitForElementToBeClickable(By.id("usernameerror"), 5);
+    }
+
+    public boolean checkErrorMessage(){
+       return keywords.elementIsDisplayed("usernameerror");
     }
 }
