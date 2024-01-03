@@ -48,6 +48,10 @@ public class Keyword {
         System.out.println("Navigated to" + url);
     }
 
+    public WebElement findElement(By locator){
+        return driver.findElement(locator);
+    }
+
     public void sendKeysByXPath(String objectXPath, String message){
         driver.findElement(By.xpath(objectXPath)).sendKeys(message);
     }

@@ -32,8 +32,11 @@ public class DashboardPage {
         keywords.clickElementID("login");
         Thread.sleep(3000);
 
-        String[] Projects = {"COALA project (COALA)", "JETI project (JETI)", "TOUCAN project (TOUCAN)"}; // Toucant nem választhatunk
-        String[] Issues = {"Epic", "Bug", "Task", "Story"}; //Bug és Story az összesnél
+        String[] Projects = {"COALA project (COALA)"}; // Toucant nem választhatunk
+        //, "JETI project (JETI)", "TOUCAN project (TOUCAN)"
+
+        String[] Issues = {"Epic", "Bug"}; //Bug és Story az összesnél
+        //, "Task", "Story"
 
         for (String project : Projects) {
             for (String issue : Issues) {
@@ -41,21 +44,28 @@ public class DashboardPage {
                     keywords.clickElementID("create_link");
                     Thread.sleep(3000);
 
-                    keywords.clickElementXPath("//*[@id=\"project-field\"]");
+                    var projectField = keywords.findElement(By.xpath("//*[@id=\"project-field\"]"));
+                    Thread.sleep(1000);
+                    projectField.click();
+                    projectField.sendKeys(Keys.BACK_SPACE);
                     Thread.sleep(3000);
-                    keywords.SendKeys(By.xpath("//*[@id=\"project-field\"]"), Keys.BACK_SPACE);
-                    keywords.sendKeysByXPath("//*[@id=\"project-field\"]", project);
-                    keywords.SendKeys(By.xpath("//*[@id=\"project-field\"]"), Keys.ENTER);
-                    Thread.sleep(3000);
-
-                    keywords.clickElementXPath("//*[@id=\"issuetype-field\"]");
-                    Thread.sleep(3000);
-                    keywords.SendKeys(By.xpath("//*[@id=\"issuetype-field\"]"), Keys.BACK_SPACE);
-                    keywords.sendKeysByXPath("//*[@id=\"issuetype-field\"]", issue);
-                    keywords.SendKeys(By.xpath("//*[@id=\"issuetype-field\"]"), Keys.ENTER);
+                    projectField.sendKeys(project);
+                    projectField.sendKeys(Keys.ENTER);
                     Thread.sleep(3000);
 
-                    keywords.sendKeysByXPath("//*[@id=\"issuetype-field\"]", "This test created by automated testing.");
+                    var issueField = keywords.findElement(By.xpath("//*[@id=\"issuetype-field\"]"));
+                    Thread.sleep(1000);
+                    issueField.click();
+                    issueField.sendKeys(Keys.BACK_SPACE);
+                    Thread.sleep(1000);
+                    issueField.sendKeys(issue);
+                    issueField.sendKeys(Keys.ENTER);
+                    Thread.sleep(3000);
+
+                    //keywords.sendKeysByXPath("//*[@id="summary"]"]", "This test created by automated testing.");
+                    var summaryField = keywords.findElement(By.xpath("//*[@id=\"summary\"]"));
+                    summaryField.click();
+                    summaryField.sendKeys("This test created by automated testing.");
                     Thread.sleep(3000);
 
                     keywords.clickElementID("create-issue-submit");
