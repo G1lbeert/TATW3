@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -53,6 +54,10 @@ public class Keyword {
 
     public void sendKeysById(String id, String message){
         driver.findElement(By.id(id)).sendKeys(message);
+    }
+
+    public void SendKeys(By locator, Keys key){
+        driver.findElement(locator).sendKeys(key);
     }
 
     public void clickElementXPath(String objectXPath){
