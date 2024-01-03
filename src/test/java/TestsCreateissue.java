@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-public class TestsCreateIssue {
+public class TestsCreateissue {
     DashboardPage dashboardPage = new DashboardPage();
 
     @Test

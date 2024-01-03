@@ -35,7 +35,7 @@ public class Keyword {
 
     public void waitForElementToBeClickable(By locator, int seconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     public WebElement findElement(By locator){
