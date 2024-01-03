@@ -11,21 +11,21 @@ public class LoginForm {
 
     public void login() {
         keywords.setupForm();
-        keywords.sendKeysById("login-form-username", authorization.UserName());
-        keywords.sendKeysById("login-form-password", authorization.Password());
-        keywords.clickElementID("login");
+        keywords.sendKeysMessage(By.id("login-form-username"), authorization.UserName());
+        keywords.sendKeysMessage(By.id("login-form-password"), authorization.Password());
+        keywords.clickElement(By.id("login"));
     }
 
     public void wrongCredentialLogin() throws InterruptedException {
         keywords.setupForm();
-        keywords.sendKeysById("login-form-username", "asd");
-        keywords.sendKeysById("login-form-password", "asd");
-        keywords.clickElementID("login");
+        keywords.sendKeysMessage(By.id("login-form-username"), "asd");
+        keywords.sendKeysMessage(By.id("login-form-password"), "asd");
+        keywords.clickElement(By.id("login"));
 
         keywords.waitForElementToBeClickable(By.id("usernameerror"), 5);
     }
 
     public boolean checkErrorMessage(){
-       return keywords.elementIsDisplayed("usernameerror");
+       return keywords.elementIsDisplayed(By.id("usernameerror"));
     }
 }

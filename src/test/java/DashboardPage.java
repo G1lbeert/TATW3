@@ -1,6 +1,5 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class DashboardPage {
 
@@ -12,24 +11,25 @@ public class DashboardPage {
     }
     public void logout() throws InterruptedException {
             keywords.setupForm();
-            keywords.sendKeysById("login-form-username", authorization.UserName());
-            keywords.sendKeysById("login-form-password", authorization.Password());
+            Thread.sleep(3000);
+            keywords.sendKeysMessage(By.id("login-form-username"), authorization.UserName());
+            keywords.sendKeysMessage(By.id("login-form-password"), authorization.Password());
             keywords.waitForElementToBeClickable(By.id("login"), 5);
-            keywords.clickElementID("login");
+            keywords.clickElement(By.id("login"));
             Thread.sleep(3000);
 
             keywords.waitForElementToBeClickable(By.id("user-options"), 5);
-            keywords.clickElementID("user-options");
+            keywords.clickElement(By.id("user-options"));
             keywords.waitForElementToBeClickable(By.id("log_out"), 5);
-            keywords.clickElementID("log_out");
+            keywords.clickElement(By.id("log_out"));
     }
 
     public void CreateIssue() throws  InterruptedException {
         keywords.setupForm();
-        keywords.sendKeysById("login-form-username", authorization.UserName());
-        keywords.sendKeysById("login-form-password", authorization.Password());
+        keywords.sendKeysMessage(By.id("login-form-username"), authorization.UserName());
+        keywords.sendKeysMessage(By.id("login-form-password"), authorization.Password());
         keywords.waitForElementToBeClickable(By.id("login"), 5);
-        keywords.clickElementID("login");
+        keywords.clickElement(By.id("login"));
         Thread.sleep(3000);
 
         String[] Projects = {"COALA project (COALA)"}; // Toucant nem választhatunk
@@ -41,7 +41,7 @@ public class DashboardPage {
         for (String project : Projects) {
             for (String issue : Issues) {
                 try {
-                    keywords.clickElementID("create_link");
+                    keywords.clickElement(By.id("create_link"));
                     Thread.sleep(3000);
 
                     var projectField = keywords.findElement(By.xpath("//*[@id=\"project-field\"]"));
@@ -68,11 +68,11 @@ public class DashboardPage {
                     summaryField.sendKeys("This test created by automated testing.");
                     Thread.sleep(3000);
 
-                    keywords.clickElementID("create-issue-submit");
+                    keywords.clickElement(By.id("create-issue-submit"));
                 } catch (Exception e) {// A click nem fut le ezért hibára fut
                     e.getMessage();
                     Thread.sleep(2000);
-                    keywords.clickElementXPath("//*[@id=\"create-issue-dialog\"]/footer/div/div/button");
+                    keywords.clickElement(By.xpath("//*[@id=\"create-issue-dialog\"]/footer/div/div/button"));
                 }
             }
         }

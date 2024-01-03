@@ -38,42 +38,23 @@ public class Keyword {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public void waitForElementToBePresent(By locator, int seconds) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-    }
-
-    public void navigate(String url){
-        driver.navigate().to(url);
-        System.out.println("Navigated to" + url);
-    }
-
     public WebElement findElement(By locator){
         return driver.findElement(locator);
     }
 
-    public void sendKeysByXPath(String objectXPath, String message){
-        driver.findElement(By.xpath(objectXPath)).sendKeys(message);
+    public void sendKeysMessage(By locator, String message){
+        driver.findElement(locator).sendKeys(message);
     }
 
-    public void sendKeysById(String id, String message){
-        driver.findElement(By.id(id)).sendKeys(message);
-    }
-
-    public void SendKeys(By locator, Keys key){
+    public void sendKeysKey(By locator, Keys key){
         driver.findElement(locator).sendKeys(key);
     }
 
-    public void clickElementXPath(String objectXPath){
-        driver.findElement(By.xpath(objectXPath)).click();
+    public void clickElement(By locator){
+        driver.findElement(locator).click();
     }
 
-    public void clickElementID(String id){
-       var element = driver.findElement(By.id(id));
-       element.click();
-    }
-
-    public boolean elementIsDisplayed(String id){
-        return driver.findElement(By.id(id)).isDisplayed();
+    public boolean elementIsDisplayed(By locator){
+        return driver.findElement(locator).isDisplayed();
     }
 }
